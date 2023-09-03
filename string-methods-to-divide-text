@@ -1,0 +1,75 @@
+/*
+--- Code project 3 - Write code in the code editor to implement code that achieves the project conditions ---
+
+The link to code challenge: https://learn.microsoft.com/en-us/training/modules/csharp-do-while/5-exercise-challenge-differentiate-while-do-statements
+
+Here are the conditions that your third coding project must implement:
+
+1) your solution must use the following string array to represent the input to your coding logic:
+    string[] myStrings = new string[2] { "I like pizza. I like roast chicken. I like salad", "I like all three of the menu choices" };
+
+2) Your solution must declare an integer variable named periodLocation that can be used to hold the location of the period character within a string.
+3) Your solution must include an outer foreach or for loop that can be used to process each string element in the array. The string variable that you will process inside the loops should be named myString.
+4) In the outer loop, your solution must use the IndexOf() method of the String class to get the location of the first period character in the myString variable. The method call should be similar to: myString.IndexOf("."). If there is no period character in the string, a value of -1 will be returned.
+5) Your solution must include an inner do-while or while loop that can be used to process the myString variable.
+6) In the inner loop, your solution must extract and display (write to the console) each sentence that is contained in each of the strings that are processed.
+7) In the inner loop, your solution must not display the period character.
+8) In the inner loop, your solution must use the Remove(), Substring(), and TrimStart() methods to process the string information.
+
+Run your application and verify that your output meets the requirements.
+If your code logic works correctly, your output should look similar to the following:
+
+I like pizza
+I like roast chicken
+I like salad
+I like all three of the menu choices
+*/
+
+// I've spent 2.5 days in trying to solve this task. For this used Microsoft documentations and discussed with GPT chat.
+// I understood methods itself, but can't get logic of using those methods together.
+// As result, I took a look at suggested solution from Academy, commented each line and understood the logic.
+
+string[] myStrings = new string[2] { "I like pizza. I like roast chicken. I like salad", "I like all three of the menu choices" };
+int stringsCount = myStrings.Length; // Определяем сколько всего символов в массиве.
+                                        // Используется в определении условия окончания цикла for.
+                                        // Можно было бы не создавать эту переменную и в цикле for писать i < myStrings.Length;
+
+string myString = ""; // Объявляем и нициализируем строковую переменную myString, которая используется внутри обоих циклов и также за пределами циклов
+int periodLocation = 0; // Объявляем и инициализируем целочисленную переменную periodLocation.
+                        // Используется только внутри циклов, поэтому можно было объявить эту переменную во внешнем цикле
+
+// Запускаем цикл for с условиями:
+// перебор начинается с 0: int i = 0;
+// цикл заканчивается как только заканчиваются символы в массиве: i < stringsCount;
+// каждый новый цикл начинается с позиции +1 символ: i++
+
+for (int i = 0; i < stringsCount; i++)
+{
+    myString = myStrings[i]; // присваиваем уже объявленной переменной myString значение i,
+                             // то есть myString будет равно каждому следующему элементу массива при каждой итерации
+    periodLocation = myString.IndexOf("."); // ищем индекс (позицию) точки в массиве и присваиваем это значение переменной periodLocation
+
+    string mySentence; // объявляем новую строковую переменную
+
+    // запускаем цикл while, который выполняется при условии, что точка найдена. Если точка не найдена, вернется значение -1 и цикл перестанет выполняться
+    while (periodLocation != -1)
+    {
+        // вывод первого предложения - удаляем все справа от первой найденной точки (включая саму точку)
+        mySentence = myString.Remove(periodLocation);
+            	
+        // определение оставшегося текста справа после точки + 1 символ
+        myString = myString.Substring(periodLocation + 1);
+            	
+        // удаление всех предшествующих пробелов из оставшегося текста
+        myString = myString.TrimStart();
+            	
+        // Обновляем положение (индекс) точки для следующей итерации в цикле while,
+        // так как строка myString изменилась и в ней уже нет первой точки, которая была вначале periodLocation = myString.IndexOf(".");
+        // цикл продолжается до тех пор, пока точка остается в тексте - periodLocation не равен -1
+
+        Console.WriteLine(mySentence); // выводим на консоль переменную mySentence
+    }
+ 
+    mySentence = myString.Trim(); // получаем последние предложения, которые не имеют точки, и убираем все пробелы до и после
+    Console.WriteLine(mySentence); // выводим последнее предложение на консоль
+}
