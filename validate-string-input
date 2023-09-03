@@ -1,0 +1,60 @@
+/*
+--- Code project 2 - write code that validates string input ---
+
+The link to code challenge: https://learn.microsoft.com/en-us/training/modules/csharp-do-while/5-exercise-challenge-differentiate-while-do-statements
+
+Here are the conditions that your second coding project must implement:
+
+  1) Your solution must include either a do-while or while iteration.
+  2) Before the iteration block: your solution must use a Console.WriteLine() statement to prompt the user for one of three role names: Administrator, Manager, or User.
+  3) Inside the iteration block:
+    > Your solution must use a Console.ReadLine() statement to obtain input from the user.
+    > Your solution must ensure that the value entered matches one of the three role options.
+    > Your solution should use the Trim() method on the input value to ignore leading and training space characters.
+    > Your solution should use the ToLower() method on the input value to ignore case.
+    > If the value entered is not a match for one of the role options, your code must use a Console.WriteLine() statement to prompt the user for a valid entry.
+  4) Below (after) the iteration code block: Your solution must use a Console.WriteLine() statement to inform the user that their input value has been accepted.
+
+Run your application and verify that your code validates user input based on the specified requirements.
+For example, when you run your application, it should reject an input value such as "Admin", but it should accept an input value of " administrator ".
+The console output for this example should look similar to the following:
+
+Enter your role name (Administrator, Manager, or User)
+Admin
+The role name that you entered, "Admin" is not valid. Enter your role name (Administrator, Manager, or User)
+   Administrator
+Your input value (Administrator) has been accepted.
+*/
+
+Console.WriteLine("Enter your role name (Administrator, Manager, or User)");
+    
+string? readResult;
+string roleName = "";
+bool validRole = false;
+        
+do
+{
+  readResult = Console.ReadLine();
+        
+  if (readResult != null)
+  {
+  roleName = readResult.Trim(); // Обрезаем все пробелы до и после введенного значения
+  }
+
+// Определяем условие - если все введенные буквы перевести в нижний регистр, будут равны словам в "", то выполнять последующее действие
+/*-------
+Если изменить конструкцию на roleName = readResult.Trim().ToLower(); и убрать ToLower() из последующего условия if,
+то выводимый результат для пользователя будет содержать любое его введенное значение в нижнем регистре. Так пользователь не увидит, что именно он ввел.
+--------*/
+
+  if (roleName.ToLower() == "administrator" || roleName.ToLower() == "manager" || roleName.ToLower() == "user") 
+  {                
+    Console.WriteLine($"Your input value ({roleName}) has been accepted.");
+    break;        
+  }
+
+  else
+  {
+    Console.WriteLine($"The role name that you entered, \"{roleName}\" is not valid. Enter your role name (Administrator, Manager, or User)");
+  }  
+} while (validRole == false);
