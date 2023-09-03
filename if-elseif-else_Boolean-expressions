@@ -1,0 +1,56 @@
+/*
+--- EVALUATE BOOLEAN EXPRESSIONS ---
+Initial code lines:
+	string permission = "Admin|Manager";
+	int level = 55;
+Your application will be using a combination of 'permission' and 'level' to apply/evaluate the business rules in this challenge scenario.
+Here are the Business Rules that your solution must satisfy:
+	1) If the user is an Admin with a level greater than 55, output the message:
+		Welcome, Super Admin user.
+	2) If the user is an Admin with a level less than or equal to 55, output the message:
+		Welcome, Admin user.
+	3) If the user is a Manager with a level 20 or greater, output the message:
+		Contact an Admin for access.
+	4) If the user is a Manager with a level less than 20, output the message:
+		You do not have sufficient privileges.
+	5) If the user is not an Admin or a Manager, output the message:
+		You do not have sufficient privileges.
+Original task's page: https://learn.microsoft.com/en-us/training/modules/csharp-evaluate-boolean-expressions/6-challenge-2
+*/
+
+// My solution is more complicated because I didn't read the task until the end,
+// where said to test an application by updating values assigned to 'permission' and 'level'
+
+string permission = "Admin|Manager";
+Console.Write("Enter your level: ");
+            
+int level = Convert.ToInt32(Console.ReadLine());
+
+if (level >= 40 && permission.Contains("Admin"))
+{
+	if (level > 55)
+	{
+		Console.WriteLine("Welcome, Super Admin user.");
+	}
+	else
+	{
+		Console.WriteLine("Welcome, Admin user.");
+	}
+}
+
+else if (level < 40 && level >10 && permission.Contains("Manager"))
+{
+	if (level >= 20)
+	{
+		Console.WriteLine("Contact an Admin for access.");
+	}
+	else
+	{
+		Console.WriteLine("You do not have sufficient privileges.");
+	}
+}
+
+else
+{
+	Console.WriteLine("!!!You do not have sufficient privileges.");
+}
