@@ -1,0 +1,33 @@
+string permission = "Admin|Manager";
+Console.Write("Enter your level: ");
+            
+int level = Convert.ToInt32(Console.ReadLine());
+
+if (level >= 40 && permission.Contains("Admin"))
+{
+	if (level > 55)
+	{
+		Console.WriteLine("Welcome, Super Admin user.");
+	}
+	else
+	{
+		Console.WriteLine("Welcome, Admin user.");
+	}
+}
+
+else if (level < 40 && level >10 && permission.Contains("Manager"))
+{
+	if (level >= 20)
+	{
+		Console.WriteLine("Contact an Admin for access.");
+	}
+	else
+	{
+		Console.WriteLine("You do not have sufficient privileges.");
+	}
+}
+
+else
+{
+	Console.WriteLine("!!!You do not have sufficient privileges.");
+}
