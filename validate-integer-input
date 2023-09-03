@@ -1,6 +1,8 @@
 /*
 --- Code project 1 - write code that validates integer input ---
 
+The link to code challenge: https://learn.microsoft.com/en-us/training/modules/csharp-do-while/5-exercise-challenge-differentiate-while-do-statements
+
 Here are the conditions that your first coding project must implement:
 
   1) Your solution must include either a do-while or while iteration.
