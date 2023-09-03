@@ -1,0 +1,58 @@
+/*
+--- Code project 1 - write code that validates integer input ---
+
+Here are the conditions that your first coding project must implement:
+
+  1) Your solution must include either a do-while or while iteration.
+  2) Before the iteration block: your solution must use a Console.WriteLine() statement to prompt the user for an integer value between 5 and 10.
+  3) Inside the iteration block:
+    > Your solution must use a Console.ReadLine() statement to obtain input from the user.
+    > Your solution must ensure that the input is a valid representation of an integer.
+    > If the integer value is not between 5 and 10, your code must use a Console.WriteLine() statement to prompt the user for an integer value between 5 and 10.
+    > Your solution must ensure that the integer value is between 5 and 10 before exiting the iteration.
+  4) Below (after) the iteration code block: your solution must use a Console.WriteLine() statement to inform the user that their input value has been accepted.
+
+Run your application and verify that your code validates user input based on the specified requirements.
+For example, when you run your application, it should reject input values such as "two" and "2", but it should accept an input value of "7".
+The example described above, the console output should look similar to the following:
+
+Enter an integer value between 5 and 10
+two
+Sorry, you entered an invalid number, please try again
+2
+You entered 2. Please enter a number between 5 and 10.
+7
+Your input value (7) has been accepted.
+*/
+
+Console.WriteLine("Enter a value between 5 and 10:");
+
+string? readResult; // Объявление переменной с разрешенным нулевым значением
+int enteredValue = 0;
+bool validNumber = false; // Задаем начальное значение введенных данных как ложь
+
+do
+{
+    readResult = Console.ReadLine(); // читаем, что ввел юзер
+    validNumber = int.TryParse(readResult, out enteredValue); // определяем, является ли введенное значение целочисленным. Если да, то вернуть результат в переменную enteredValue
+
+// Определяем условия, если пользователь ввел целочисленное значение
+
+    if (validNumber == true)
+    {
+        if (enteredValue < 5 || enteredValue > 10)
+        {
+            Console.WriteLine($"You entered {enteredValue}. Please enter a number between 5 and 10.");
+        }
+        else if (enteredValue >= 5 && enteredValue <= 10)
+        {
+            Console.WriteLine($"Your input value ({enteredValue}) has been accepted.");
+        }
+    }
+
+// Определяем, что будет происходить, если пользователь ввел что угодно другое, кроме целого числа
+    else
+    {
+        Console.WriteLine("Sorry, you entered an invalid number, please try again");
+    }
+} while (validNumber == false || enteredValue < 5 || enteredValue > 10); // Цикл будет продолжаться до тех пор, пока введенные данные не будут целым числом между 5 и 10
