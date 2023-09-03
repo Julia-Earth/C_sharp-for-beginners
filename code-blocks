@@ -1,5 +1,6 @@
 /*
 --- Code challenge: update problematic code ---
+Link to this task in Academy: https://learn.microsoft.com/en-us/training/modules/csharp-code-blocks/4-exercise-challenge-variable-scope
 
 int[] numbers = { 4, 8, 15, 16, 23, 42 };
 
